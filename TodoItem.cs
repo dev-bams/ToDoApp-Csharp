@@ -8,7 +8,8 @@ namespace ToDoApp
 {
   internal class TodoItem
   {
-    public static int id;
+    public static int todoCount = 0;
+    public int id;
     public string title;
     public string description;
     public string dueDate;
@@ -22,7 +23,8 @@ namespace ToDoApp
       this.dueDate = dueDate;
       this.priority = priority;
       this.status = status;
-      id += 1;
+      id = todoCount;
+      todoCount++;
     }
   }
 }

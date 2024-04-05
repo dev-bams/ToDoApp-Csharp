@@ -8,6 +8,7 @@ namespace ToDoApp
 {
   internal class Program
   {
+    static TodoItem[] todoItems = new TodoItem[100];
     static void Main(string[] args)
     {
       while (true)
@@ -44,14 +45,16 @@ namespace ToDoApp
         case "1":
           CreateNewTask();
           break;
+        case "2":
+          ViewTasks();
+          break;
       }
     }
     static void CreateNewTask()
     {
       Console.Write("Enter number of tasks: ");
       int numberOfTasks = int.Parse(Console.ReadLine());
-      Console.WriteLine("\n");
-      TodoItem[] todoItems = new TodoItem[numberOfTasks];
+      Console.Clear();
       for (int i = 0; i < numberOfTasks; i++)
       {
         Console.WriteLine($"Task{i + 1}");
@@ -69,6 +72,22 @@ namespace ToDoApp
         TodoItem todoItem = new TodoItem(title, description, dueDate, priority, status);
         todoItems[i] = todoItem;
       }
+    }
+    static void ViewTasks()
+    {
+      for (int i = 0; i < TodoItem.todoCount; i++)
+      {
+        Console.WriteLine(todoItems[i].title);
+        Console.WriteLine(todoItems[i].description);
+        Console.WriteLine(todoItems[i].dueDate);
+        Console.WriteLine(todoItems[i].priority);
+        Console.WriteLine(todoItems[i].status);
+        Console.WriteLine(todoItems[i].id);
+        Console.WriteLine("");
+      }
+      Console.WriteLine("\n");
+      Console.Write("Press Enter to return to the main menu");
+      Console.ReadLine();
     }
   }
 }
